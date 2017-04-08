@@ -1,8 +1,9 @@
 import struct
 from typing import List
 
+from sklearn.neighbors import KNeighborsClassifier
 
-from . import gfx, audio
+from . import gfx, audio, train
 
 
 def chunks(data: bytes, chunk_size: int) -> List[bytes]:
@@ -16,11 +17,15 @@ def stream_to_ints(stream: bytes) -> List[int]:
 
 
 def main() -> None:
-    stream = audio.Stream()
-    buff = stream.record(1.5)
-    stream.save_to('output.wav', buff)
+    clf = KNeighborsClassifier(3)
+    clf.fit(*train.load_data('data'))
 
-    gfx.plot_vector(stream_to_ints(buff))
+    stream = audio.Stream()
+    print('Recording!!!')
+    buff = stream.record(1.5)
+    sample = stream_to_ints(buff)
+    print(clf.predict([sample]))
+    # gfx.plot_vector(stream_to_ints(buff))
 
 
 main()

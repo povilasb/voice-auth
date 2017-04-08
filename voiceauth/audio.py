@@ -34,3 +34,13 @@ class Stream:
         wf.setframerate(self._rate)
         wf.writeframes(stream)
         wf.close()
+
+    def read_from(self, fname: str) -> bytes:
+        wf = wave.open(fname, 'rb')
+        data = wf.readframes(1024)
+        buff = data
+        while data != b'':
+            data = wf.readframes(1024)
+            buff += data
+
+        return buff
