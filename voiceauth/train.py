@@ -24,7 +24,7 @@ def load_data(training_dir: str) -> Tuple[list, list]:
         training_files = os.listdir('{}/{}'.format(training_dir, label))
         for f in training_files:
             buff = stream.read_from('{}/{}/{}'.format(training_dir, label, f))
-            data.append(stream_to_ints(buff))
+            data.append(audio.stream_to_ints(buff))
             labels.append(label)
     return data, labels
 
