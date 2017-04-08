@@ -27,7 +27,7 @@ class Stream:
 
         return audio_stream
 
-    def save_stream_to(self, fname: List[str], stream: bytes) -> None:
+    def save_to(self, fname: List[str], stream: bytes) -> None:
         wf = wave.open(fname, 'wb')
         wf.setnchannels(self._channels)
         wf.setsampwidth(self._p.get_sample_size(self._format))

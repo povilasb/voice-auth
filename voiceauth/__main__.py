@@ -18,7 +18,7 @@ def stream_to_ints(stream: bytes) -> List[int]:
 def main() -> None:
     stream = audio.Stream()
     buff = stream.record(1.5)
-    stream.save_stream_to('output.wav', buff)
+    stream.save_to('output.wav', buff)
 
     gfx.plot_vector(stream_to_ints(buff))
 
