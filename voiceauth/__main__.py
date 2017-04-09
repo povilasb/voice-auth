@@ -1,19 +1,14 @@
-from sklearn.neighbors import KNeighborsClassifier
+import numpy as np
 
-from . import gfx, audio, train
-
+from . import gfx, audio
 
 
 def main() -> None:
-    clf = KNeighborsClassifier(3)
-    clf.fit(*train.load_data('data'))
-
     stream = audio.Stream()
     print('Recording!!!')
     buff = stream.record(1.5)
-    sample = stream_to_ints(buff)
-    print(clf.predict([sample]))
-    # gfx.plot_vector(stream_to_ints(buff))
+    sample = np.array(audio.stream_to_ints(buff))
+    gfx.plot_vector(sample)
 
 
 main()
