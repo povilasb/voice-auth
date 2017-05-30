@@ -2,9 +2,20 @@
 About
 =====
 
-System Requirements::
+Only works on python >= 3.4.
+
+System requirements::
 
     $ apt install libportaudio-dev
+    $ cd libs/portaudio-v190600-20161030 && configure && make && sudo make install
+
+Python requirements::
+
+    $ make pyenv
+
+Run demo application::
+
+    $ pyenv/bin/python -m voiceauth
 
 .. rubric:: References
 
